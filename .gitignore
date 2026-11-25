@@ -17,3 +17,6 @@ original_ERCAN/
 
 # test demo 文件夹（暂不上传）
 test demo/
+
+# eig1.m：仅被 original_ERCAN/ERCAN.m 调用（对比方法不上传），仓库内无引用，冗余
+eig1.m
