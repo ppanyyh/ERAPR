@@ -1,9 +1,9 @@
 # ERAPR
 
-**E**fficient and **R**obust **A**daptive **P**rojection with Spectral **R**otation for Graph-based Clustering
+**E**ntropy-**R**egularized **A**daptive **P**rojection and **R**otation for One-Step Spectral Clustering
 
 > [!NOTE]
-> This repository accompanies a paper currently under review. Code is made available for reproducibility; the paper title, authors, and citation will be added once the paper is accepted.
+> This is the official code for the paper **"Entropy-Regularized Adaptive Projection and Rotation for One-Step Spectral Clustering"**, currently under review. The authors and full citation (BibTeX) will be added once the paper is accepted.
 
 ---
 
@@ -127,9 +127,11 @@ All datasets are publicly available benchmarks. Please refer to their original s
 
 ## Citation
 
-The paper is currently under review. Citation information will be added here once it is accepted.
+If you find this work useful, please cite:
 
-<!-- TODO: add BibTeX entry -->
+**Entropy-Regularized Adaptive Projection and Rotation for One-Step Spectral Clustering** (under review).
+
+<!-- TODO: add full BibTeX entry once accepted -->
 
 ---
 
