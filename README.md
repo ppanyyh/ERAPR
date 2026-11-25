@@ -29,31 +29,35 @@ The variables are optimized alternately via **ADMM** and **Generalized Power Ite
 
 This repository ships **source code only** (the paper is under review). Benchmark datasets (`.mat`), experiment result figures (`.png` / `.pdf`), result tables (`.xlsx`), and the baseline method `ERCAN` are intentionally **not** included — see [Reproducing the Results](#reproducing-the-results).
 
+The code is organized into two top-level folders — **`ERAPR/`** (core algorithm implementation) and **`Implement/`** (evaluation & demo scripts) — plus experiment sub-folders:
+
 ```
 ERAPR code and data/
-├── ERAPR.m                    # Main algorithm
-├── ERAPR_con.m                # Main algorithm with convergence history (objective / ACC / NMI)
-├── ablationQ.m                # Ablation: remove the spectral rotation update (Q)
-├── init_A.m                   # Adaptive similarity matrix initialization
-├── eig1.m                     # Eigen-decomposition helper (smallest/largest c eigenvectors)
-├── L2_distance_1.m            # Squared Euclidean distance matrix
-├── ClusteringMeasure.m        # ACC / NMI / Purity / F1 (contains hungarian.m, see Acknowledgments)
-│
-├── single_seed_demo.m         # Quick single-seed demo on one dataset
-├── all_seeds_demo.m           # Multi-seed (10-run) evaluation
-├── run_multi_seed_eval.m      # Multi-seed evaluation helper (returns mean ACC/NMI)
-├── chunk_size_experiment.m    # Chunk-size sensitivity experiment
-├── convergence.m              # Convergence analysis (objective + accuracy curves)
-│
-├── Parameter_one.m            # Single-variable parameter sensitivity (lambda / eta / k)
-├── Parameter_two.m            # Two-variable synergy analysis (lambda vs eta, lambda vs k)
-├── Parameter_w.m              # Window-consistency / stability analysis
-│
-├── ablation/                  # Ablation study scripts
-├── convergence analysis/      # Convergence script (ERAPR_con.m)
-├── parameter analysis/demo/   # Parameter-analysis demo scripts
-├── test demo/                 # ERCAN variant + random-sampling / sequential-window demos
-└── data for experiments/      # Dataset helper script (countlabels.m); .mat data NOT included
+├── ERAPR/                          # Core algorithm implementation
+│   ├── ERAPR.m                     # Main algorithm (P / Q / F / A joint optimization)
+│   ├── init_A.m                    # Adaptive similarity matrix initialization
+│   └── L2_distance_1.m             # Squared Euclidean distance matrix
+├── Implement/                      # Evaluation & demo scripts
+│   ├── ClusteringMeasure.m         # ACC / NMI / Purity / F1 (embeds hungarian.m)
+│   ├── all_seeds_demo.m            # Multi-seed (10-run) evaluation
+│   └── single_seed_demo.m          # Quick single-seed demo
+├── ablation/                       # Ablation study scripts
+│   ├── ablationP.m
+│   ├── ablationPdemo.m
+│   └── ablationQ.m
+├── convergence analysis/           # Convergence analysis scripts
+│   ├── ERAPR_con.m                 # Main algorithm with convergence history
+│   └── convergence.m               # Convergence curves (objective + accuracy)
+├── parameter analysis/demo/        # Parameter sensitivity scripts
+│   ├── Parameter_one.m             # Single-variable sensitivity (lambda / eta / k)
+│   ├── Parameter_two.m             # Two-variable synergy (lambda vs eta, lambda vs k)
+│   ├── Parameter_w.m               # Window-consistency analysis
+│   ├── chunk_size_experiment.m     # Chunk-size sensitivity
+│   └── run_multi_seed_eval.m       # Multi-seed evaluation helper
+├── data for experiments/           # Dataset helper (countlabels.m); .mat NOT included
+│   └── countlabels.m
+├── README.md
+└── .gitignore
 ```
 
 ---
@@ -72,10 +76,10 @@ ERAPR code and data/
    addpath(genpath('ERAPR code and data'));
    ```
 
-2. Run the single-seed demo (edit `DataName` in `single_seed_demo.m` to pick a dataset):
+2. Run the single-seed demo (edit `DataName` in `Implement/single_seed_demo.m` to pick a dataset):
 
    ```matlab
-   run('single_seed_demo.m');
+   run('Implement/single_seed_demo.m');
    ```
 
 3. Or call the algorithm directly:
